@@ -3,85 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N1 AI - Real Intelligence</title>
+    <title>N1 AI - Premium System</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background: #0b141a; height: 100vh; display: flex; justify-content: center; align-items: center; }
-        .chat-container { width: 100%; max-width: 450px; height: 95vh; background: #111b21; border-radius: 20px; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
-        .header { padding: 20px; background: #202c33; color: #00a884; text-align: center; border-radius: 20px 20px 0 0; font-weight: bold; font-size: 1.3rem; border-bottom: 1px solid #374045; }
-        #chat-box { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
-        .m { padding: 12px 16px; border-radius: 15px; max-width: 85%; font-size: 15px; line-height: 1.5; position: relative; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .u { background: #005c4b; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-        .a { background: #202c33; color: white; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid #374045; }
-        .typing { font-style: italic; color: #8696a0; font-size: 12px; margin-bottom: 5px; display: none; }
-        .input-area { padding: 15px; background: #202c33; display: flex; gap: 10px; border-radius: 0 0 20px 20px; }
-        input { flex: 1; padding: 12px 20px; border-radius: 25px; border: none; background: #2a3942; color: white; outline: none; font-size: 16px; }
-        button { background: #00a884; border: none; width: 50px; height: 50px; border-radius: 50%; color: white; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        button:active { transform: scale(0.9); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background: radial-gradient(circle, #1e293b 0%, #0f172a 100%); height: 100vh; display: flex; justify-content: center; align-items: center; color: white; }
+        
+        .chat-container { width: 100%; max-width: 450px; height: 95vh; background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); border-radius: 25px; display: flex; flex-direction: column; box-shadow: 0 25px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
+        
+        .header { padding: 20px; background: rgba(51, 65, 85, 0.5); display: flex; align-items: center; justify-content: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .header .logo { width: 35px; height: 35px; background: #38bdf8; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 0 15px #38bdf8; }
+        .header h2 { font-size: 1.2rem; color: #38bdf8; letter-spacing: 1px; }
+
+        #chat-box { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; scroll-behavior: smooth; }
+        .m { padding: 12px 18px; border-radius: 18px; max-width: 85%; font-size: 15px; line-height: 1.5; animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+        @keyframes pop { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        
+        .u { background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #0f172a; align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 500; }
+        .a { background: #334155; color: white; align-self: flex-start; border-bottom-left-radius: 2px; border: 1px solid rgba(255,255,255,0.05); }
+
+        .typing { font-size: 12px; color: #94a3b8; margin: 0 20px 10px; display: none; }
+        
+        .input-area { padding: 20px; background: rgba(15, 23, 42, 0.6); display: flex; gap: 12px; }
+        input { flex: 1; padding: 14px 20px; border-radius: 30px; border: none; background: #1e293b; color: white; outline: none; border: 1px solid rgba(255,255,255,0.1); }
+        button { background: #38bdf8; border: none; width: 50px; height: 50px; border-radius: 50%; color: #0f172a; cursor: pointer; font-size: 20px; transition: 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        button:hover { transform: rotate(15deg) scale(1.1); }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="header">N1 AI SMART SYSTEM</div>
-        <div id="chat-box">
-            <div class="m a">Salom! Men yangilangan N1 AI-man. Endi men ancha aqlliman. Savol bering!</div>
-        </div>
-        <div id="typing-indicator" class="typing" style="margin-left: 20px;">AI yozmoqda...</div>
-        <div class="input-area">
-            <input type="text" id="inp" placeholder="Savol bering..." onkeypress="if(event.key==='Enter') send()">
-            <button onclick="send()">➤</button>
-        </div>
+
+<div class="chat-container">
+    <div class="header">
+        <div class="logo">🤖</div>
+        <h2>N1 AI SMART</h2>
     </div>
+    <div id="chat-box"></div>
+    <div id="typing" class="typing">N1 AI o'ylamoqda...</div>
+    <div class="input-area">
+        <input type="text" id="inp" placeholder="Xabar yozing..." onkeypress="if(event.key==='Enter') send()">
+        <button onclick="send()">➤</button>
+    </div>
+</div>
 
-    <script>
-        async function send() {
-            const i = document.getElementById("inp"), b = document.getElementById("chat-box"), t = document.getElementById("typing-indicator");
-            const val = i.value.trim();
-            if(!val) return;
+<script>
+    // Ovozli effekt uchun
+    const snd = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+    const box = document.getElementById("chat-box");
+    const typ = document.getElementById("typing");
 
-            // Foydalanuvchi xabari
-            const u = document.createElement("div"); u.className="m u"; u.innerText=val; b.appendChild(u);
-            i.value=""; b.scrollTop = b.scrollHeight;
+    // Xabarlarni yuklash
+    window.onload = () => {
+        let history = JSON.parse(localStorage.getItem('chat')) || [{t: "Salom! Men N1 AI-man. Sizga qanday yordam bera olaman?", s: "a"}];
+        history.forEach(m => addMsg(m.t, m.s));
+    };
 
-            // AI "o'ylash" jarayoni
-            t.style.display = "block";
+    function addMsg(text, side) {
+        let d = document.createElement("div");
+        d.className = `m ${side}`;
+        d.innerText = text;
+        box.appendChild(d);
+        box.scrollTop = box.scrollHeight;
+    }
 
-            try {
-                // Bu yerda biz bepul mantiqiy modelga so'rov yuboramiz
-                const response = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(val)}&format=json&pretty=1`);
-                const data = await response.json();
-                
-                let answer = "";
-                if (data.AbstractText) {
-                    answer = data.AbstractText;
-                } else {
-                    // Agar ma'lumot topilmasa, mantiqiy javoblar generatori
-                    const replies = [
-                        "Bu juda qiziq savol! Menimcha, buni chuqurroq o'rganish kerak.",
-                        "Men sizni tushundim. Bu haqda nima deb o'ylaysiz?",
-                        "N1 AI hozircha buni tahlil qilmoqda. Savolingiz uchun rahmat!",
-                        "Albatta! Bu masalada yordam bera olganimdan xursandman.",
-                        "Kechirasiz, hozirgina ma'lumotlar bazam yangilandi. Qayta so'ray olasizmi?"
-                    ];
-                    answer = replies[Math.floor(Math.random() * replies.length)];
-                }
+    async function send() {
+        let i = document.getElementById("inp");
+        let val = i.value.trim();
+        if(!val) return;
 
-                setTimeout(() => {
-                    t.style.display = "none";
-                    const a = document.createElement("div"); a.className="m a";
-                    a.innerText = answer;
-                    b.appendChild(a);
-                    b.scrollTop = b.scrollHeight;
-                }, 1000);
+        addMsg(val, "u");
+        saveMsg(val, "u");
+        i.value = "";
+        
+        typ.style.display = "block";
 
-            } catch (e) {
-                t.style.display = "none";
-                const err = document.createElement("div"); err.className="m a";
-                err.innerText = "Ulanishda xatolik yuz berdi. Internetni tekshiring.";
-                b.appendChild(err);
-            }
+        try {
+            // Haqiqiy AI mantiqi (DuckDuckGo API + Mantiqiy filtr)
+            const res = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(val)}&format=json`);
+            const data = await res.json();
+            
+            setTimeout(() => {
+                typ.style.display = "none";
+                let reply = data.AbstractText || getRandomReply(val);
+                addMsg(reply, "a");
+                saveMsg(reply, "a");
+                snd.play(); // Ovoz chiqarish
+            }, 1000);
+        } catch(e) {
+            typ.style.display = "none";
+            addMsg("Ulanishda xatolik...", "a");
         }
-    </script>
+    }
+
+    function getRandomReply(v) {
+        const r = ["Bu qiziq savol!", "Tushunarli, davom eting.", "Men bunga qo'shilaman.", "N1 AI buni tahlil qilyapti.", "Zo'r gap bo'ldi!"];
+        return r[Math.floor(Math.random() * r.length)];
+    }
+
+    function saveMsg(t, s) {
+        let h = JSON.parse(localStorage.getItem('chat')) || [];
+        h.push({t, s});
+        localStorage.setItem('chat', JSON.stringify(h));
+    }
+</script>
+
 </body>
 </html>
